@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 
 @Controller
 @RequestMapping("/products")
@@ -47,7 +51,12 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public String saveProduct(Product product) {
+    public String saveProduct(@Valid @ModelAttribute("product") Product product,
+                              BindingResult result,
+                              Model model) {
+        if (result.hasErrors()) {
+            return (product.getId() == null) ? "newProduct" : "editProduct";
+        }
 
         productService.saveProduct(product);
 

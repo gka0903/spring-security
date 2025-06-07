@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
@@ -28,6 +29,15 @@ class HelloSpringDataJpaApplicationTests {
 
     @Test
     void contextLoads() {
+    }
+
+    @Autowired
+    private PasswordEncoder encoder;
+
+    @Test
+    void generateHashedPassword() {
+        String pwd = encoder.encode("alicepw");
+        System.out.println("pwd encode : " + pwd);
     }
 
     @Test

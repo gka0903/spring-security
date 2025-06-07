@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Users</title>
+    <style>
+      .container {
+        max-width: 800px;
+        margin: 2rem auto;
+        text-align: center;
+      }
+      table {
+        width: 100%;
+        margin: 0 auto;
+        border-collapse: collapse;
+      }
+      table th, table td {
+        padding: 0.5rem;
+        border: 1px solid #dee2e6;
+      }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Admin - User List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="u : ${users}">
+          <td th:text="${u.id}">1</td>
+          <td th:text="${u.email}">email@example.com</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
