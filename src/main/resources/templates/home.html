@@ -31,11 +31,10 @@
 
 <body>
 <div class="container">
-  <h2> 스프링 부트 과제입니다 </h2>
+  <h2> Assignment </h2>
 
   <div sec:authorize="isAuthenticated()">
     <p>Welcome <span sec:authentication="principal.username">User</span></p>
-    <!-- <p><a th:href="@{/logout}">Logout</a></p>-->
     <div class="button-group">
       <a th:href="@{/products}" class="btn">Products</a>
       <a class="btn btn-warning mb-3" th:href="@{/admin/users}" sec:authorize="hasRole('ADMIN')">Admin Page</a>
@@ -43,18 +42,6 @@
         <input type="submit" value="LogOut" class="btn"/>
       </form>
     </div>
-
-<!--    <div sec:authorize="hasRole('ROLE_ADMIN')">-->
-<!--      <h3>You will see this only if you are ADMIN</h3>-->
-<!--      <p><a th:href="@{/admin/home}" class="btn">Admin Home</a></p>-->
-<!--    </div>-->
-
-<!--    Authenticated user roles:-->
-<!--    <div sec:authorize="isAuthenticated()">-->
-<!--      <div th:each="authority : ${#authentication.authorities}">-->
-<!--        <span th:text="${authority.getAuthority()}">[Authority]</span>-->
-<!--      </div>-->
-<!--    </div>-->
   </div>
 
   <div sec:authorize="isAnonymous()">
